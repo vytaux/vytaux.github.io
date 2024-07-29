@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vytautas Asmantavicius - Full-Stack Software Engineer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICA8dGV4dCB4PSI1MCIgeT0iODAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+8J+YjjwvdGV4dD4KPC9zdmc+">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #e74c3c;
+            --accent-color: #2ecc71;
+            --background-color: #f4f4f4;
+            --text-color: #333;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .section {
+            margin-bottom: 4rem;
+            position: relative;
+            padding-top: 80px;
+            margin-top: -80px;
+        }
+        .section::before {
+            content: '';
+            position: absolute;
+            left: -40px;
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-color);
+            opacity: 0.1;
+            transform: rotate(45deg);
+            z-index: -1;
+        }
+        .profile-picture {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 2rem;
+            border: 4px solid var(--primary-color);
+        }
+        .nav-link {
+            position: relative;
+            color: var(--text-color);
+            text-decoration: none;
+            padding-bottom: 5px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+        .angular-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .social-link {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .social-link:hover {
+            transform: scale(1.1);
+        }
+        .social-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .social-link-stack-overflow .social-icon {
+            width: 21px;
+            height: 21px;
+        }
+
+        .social-link-freelancer .social-icon {
+            width: 26px;
+            height: 26px;
+        }
+
+        .skills-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .skill-logo {
+            width: 50px;
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .under-construction {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* New styles for sticky navigation */
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            background-color: transparent; /* Change to transparent */
+            /*backdrop-filter: blur(5px);*/
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Add transition for background-color */
+        }
+
+        .sticky-nav.scrolled {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.9); /* Add background color when scrolled */
+            backdrop-filter: blur(5px); /* Add blur effect when scrolled */
+        }
+    </style>
+</head>
+<body >
+<div class="angular-bg">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <pattern id="pattern" width="100" height="100" patternUnits="userSpaceOnUse">
+            <path d="M0 0L50 50L100 0L50 100Z" fill="var(--primary-color)"/>
+        </pattern>
+        <rect width="100%" height="100%" fill="url(#pattern)"/>
+    </svg>
+</div>
+
+<nav class="sticky-nav mb-16">
+    <div class="container">
+        <ul class="flex justify-center space-x-8">
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#experience" class="nav-link">Experience</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <header id="about" class="text-center mb-16 about-section mb-20">
+        <img src="https://avatars.githubusercontent.com/u/42167296?v=4" alt="Vytautas Asmantavicius" class="profile-picture shadow-lg">
+        <h1 class="text-4xl font-light mb-2" style="color: var(--primary-color);">Vytautas Asmantavicius</h1>
+        <p class="text-xl mb-4" style="color: var(--secondary-color);">Full-Stack Software Engineer</p>
+        <div class="social-links items-center">
+            <a href="mailto:vytautas.asmantavicius.1@gmail.com" class="social-link" title="Email">
+                <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20,4H4C2.895,4,2,4.895,2,6v12c0,1.105,0.895,2,2,2h16c1.105,0,2-0.895,2-2V6C22,4.895,21.105,4,20,4z M20,8.236l-8,4.882 L4,8.236V6h16V8.236z" fill="#D44638"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/vytautas-asmantavicius" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19,3H5C3.895,3,3,3.895,3,5v14c0,1.105,0.895,2,2,2h14c1.105,0,2-0.895,2-2V5C21,3.895,20.105,3,19,3z M9,17H6.477v-7H9 V17z M7.694,8.717c-0.771,0-1.286-0.514-1.286-1.2s0.514-1.2,1.371-1.2c0.771,0,1.286,0.514,1.286,1.2S8.551,8.717,7.694,8.717z M18,17h-2.442v-3.826c0-1.058-0.651-1.302-0.895-1.302s-1.058,0.163-1.058,1.302c0,0.163,0,3.826,0,3.826h-2.523v-7h2.523v0.977 C13.93,10.407,14.581,10,15.802,10C17.023,10,18,10.977,18,13.174V17z" fill="#0077B5"/>
+                </svg>
+            </a>
+            <a href="https://github.com/vytaux" class="social-link" title="GitHub" target="_blank" rel="noopener noreferrer">
+                <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12,2C6.477,2,2,6.477,2,12c0,4.419,2.865,8.166,6.839,9.489c0.5,0.09,0.682-0.217,0.682-0.481 c0-0.237-0.008-0.865-0.013-1.696c-2.782,0.603-3.369-1.34-3.369-1.34c-0.454-1.156-1.11-1.464-1.11-1.464 c-0.908-0.62,0.069-0.608,0.069-0.608c1.003,0.07,1.531,1.03,1.531,1.03c0.892,1.529,2.341,1.088,2.91,0.832 c0.091-0.647,0.349-1.086,0.635-1.337c-2.22-0.251-4.555-1.111-4.555-4.943c0-1.091,0.39-1.984,1.029-2.683 C6.546,8.54,6.202,7.524,6.746,6.148c0,0,0.84-0.269,2.75,1.025C10.295,6.95,11.15,6.84,12,6.836 c0.85,0.004,1.705,0.114,2.504,0.336c1.909-1.294,2.748-1.025,2.748-1.025c0.546,1.376,0.202,2.394,0.1,2.646 c0.64,0.699,1.026,1.591,1.026,2.683c0,3.841-2.337,4.687-4.565,4.935c0.359,0.307,0.679,0.917,0.679,1.852 c0,1.335-0.012,2.415-0.012,2.741c0,0.267,0.18,0.577,0.688,0.479C19.138,20.161,22,16.416,22,12C22,6.477,17.523,2,12,2z" fill="#181717"/>
+                </svg>
+            </a>
+            <a href="https://freelancer.com/u/OhMyCode" class="social-link social-link-freelancer" title="Freelancer" target="_blank" rel="noopener noreferrer">
+                <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.096 3.076l1.634 2.292L24 3.076M5.503 20.924l4.474-4.374-2.692-2.89m6.133-10.584L11.027 5.23l4.022.15m-4.021-.15L.001 3.076l3.817 3.667m7.208-1.513l-3.873 3.85 4.9 5.25 4.171-4.127" fill="#29B2FE"/>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <section id="skills" class="section">
+        <h2 class="text-2xl font-light mb-8" style="color: var(--primary-color);">Skills</h2>
+        <div class="skills-logos">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="skill-logo">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" class="skill-logo">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot" class="skill-logo">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/symfony/symfony-original.svg" alt="Symfony" class="skill-logo">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" class="skill-logo">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="skill-logo">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="skill-logo">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="skill-logo">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="skill-logo">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="skill-logo">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="skill-logo">
+        </div>
+        <div class="skills-list">
+            <span class="skill-item">Object-Oriented Programming</span>
+            <span class="skill-item">Web Security</span>
+            <span class="skill-item">SOLID</span>
+            <span class="skill-item">RESTful APIs</span>
+            <span class="skill-item">Service-Oriented Architecture</span>
+            <span class="skill-item">Automated Testing</span>
+            <span class="skill-item">Database Design</span>
+            <span class="skill-item">Software Architecture</span>
+            <span class="skill-item">Cloud Computing</span>
+        </div>
+    </section>
+
+    <section id="experience" class="section relative">
+        <h2 class="text-2xl font-light mb-8" style="color: var(--primary-color);">Experience</h2>
+        <div class="space-y-8 relative z-10">
+            <div class="bg-white p-6 rounded-lg shadow-md experience-card">
+                <h3 class="text-xl mb-2" style="color: var(--secondary-color);">Full Stack Developer</h3>
+                <p class="text-gray-600 mb-2">Emoti Group, Vilnius, Lithuania - Online retail company | 07/2021 – 10/2023</p>
+                <p class="text-gray-700">Designed, developed, and maintained software solutions.</p>
+                <ul class="space-y-2 mb-4 mt-2">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Refactored and improved the codebase using Symfony, implementing best practices according to Symfony framework standards, and reducing technical debt, which resulted in a 40% increase in development efficiency.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Revamped internal newsletter system using PHP and GetResponse, redesigning the architecture to allow for more flexible and targeted newsletter sending, which improved user engagement and operational flexibility.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Optimized frontend resource loading using HTML, CSS, and JS, minifying assets, leveraging browser caching, and optimizing images, leading to an 11% increase in website performance.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Carried out frontend design updates according to provided designer specifications using HTML, CSS, and JS, improving user satisfaction and retention by 30%.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Standardized development setups across teams using Docker, enhancing collaboration, and reducing the “it works on my machine” problem, increasing overall development efficiency by 25%.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Facilitated team code reviews using Git and GitLab, promoting a culture of collaboration and continuous improvement, and enhancing code quality through regular peer reviews and feedback sessions.</span>
+                    </li>
+                </ul>
+                <div class="flex flex-wrap gap-4 mt-6">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/symfony/symfony-original.svg" alt="Symfony" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" alt="jQuery" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg" alt="MariaDB" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" alt="GitLab" class="w-8 h-8 tech-icon">
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md experience-card">
+                <h3 class="text-xl mb-2" style="color: var(--secondary-color);">Full Stack Developer</h3>
+                <p class="text-gray-600 mb-2">Proven Stack, Kaunas, Lithuania - Financial and blockchain engineering company | 08/2018 – 09/2019</p>
+                <p class="text-gray-700">Designed, built, and supported robust software solutions.</p>
+                <ul class="space-y-2 mb-4 mt-2">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Increased codebase maintainability using PHP, utilizing clean code techniques and Symfony framework best practices to ensure a more stable and reliable application, by reducing bug rate by 20%.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Improved security and compliance of web applications using Symfony, ensuring data protection, and reducing security vulnerabilities by 40%.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Improved website compatibility across various browsers using HTML, CSS, Bootstrap, which resulted in better user satisfaction due to a more consistent and seamless user experience.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Integrated RESTful APIs using Vue.js, enabling real-time data updates and interactive features, which improved overall application functionality and user satisfaction by 18%.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Applied modern language features to refactor legacy codebases using JavaScript ES6+, enhancing code readability, maintainability, and performance, leading to a 35% reduction in technical debt and future development costs.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Simplified the development workflow using Git, facilitating better version tracking and smoother merging processes, increasing team collaboration and productivity.</span>
+                    </li>
+                </ul>
+                <div class="flex flex-wrap gap-4 mt-6">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/symfony/symfony-original.svg" alt="Symfony" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="w-8 h-8 tech-icon">
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md experience-card">
+                <h3 class="text-xl mb-2" style="color: var(--secondary-color);">PHP Backend Developer</h3>
+                <p class="text-gray-600 mb-2">Credit Online, Kaunas, Lithuania - Loan and client management software | 01/2018 – 06/2018</p>
+                <p class="text-gray-700">Built and maintained reliable software solutions with a focus on quality and performance.</p>
+                <ul class="space-y-2 mb-4 mt-2">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Reduced technical debt by refactoring legacy code using PHP/Symfony, which improved maintainability and facilitated easier future updates and enhancements by 50%.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Implemented robust error handling mechanisms using PHP/Symfony, which enhanced system scalability and reliability, leading to a 70% reduction in downtime.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Conducted thorough performance audits and implemented targeted optimizations using PHP/Symfony, resulting in a 20% increase in overall system performance by addressing bottlenecks and improving efficiency.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Resolved various development environment issues using PHP/Symfony, providing support and guidance to colleagues, improving development time and teamwork.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Optimized database indexing strategies using MariaDB, reducing query execution time and improving overall system efficiency, enhancing data retrieval speed and application responsiveness.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Identified and resolved code inefficiencies using PHP/Symfony, addressing critical bugs, and optimizing resource usage, which increased system stability and performance by 12%.</span>
+                    </li>
+                </ul>
+                <div class="flex flex-wrap gap-4 mt-6">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/symfony/symfony-original.svg" alt="Symfony" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" alt="jQuery" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="w-8 h-8 tech-icon">
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md experience-card">
+                <h3 class="text-xl mb-2" style="color: var(--secondary-color);">Full-Stack Developer</h3>
+                <p class="text-gray-600 mb-2">TeleSoftas | 04/2014 – 09/2017</p>
+                <p class="text-gray-700">Developed a wide range of software solutions, tackling diverse business challenges across different industries.</p>
+                <div class="flex flex-wrap gap-4 mt-6">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/symfony/symfony-original.svg" alt="Symfony" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" class="w-8 h-8 tech-icon">
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md experience-card">
+                <h3 class="text-xl mb-2" style="color: var(--secondary-color);">Freelance Full-Stack Developer</h3>
+                <p class="text-gray-600 mb-2">Freelancer.com | 2011 – 2014</p>
+                <p class="text-gray-700">Worked on various freelance projects, developing custom solutions and improving existing systems.</p>
+                <ul class="space-y-2 mb-4 mt-2">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Optimized codebases and added new features for custom and well-known CMSes such as WordPress.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Implemented third-party APIs like PayPal, Facebook, and Google.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700">Developed standalone software modules and full-fledged websites.</span>
+                    </li>
+                </ul>
+                <div class="flex flex-wrap gap-4 mt-6">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/symfony/symfony-original.svg" alt="Symfony" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" alt="jQuery" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="w-8 h-8 tech-icon">
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md experience-card">
+                <h3 class="text-xl mb-2" style="color: var(--secondary-color);">PHP Developer</h3>
+                <p class="text-gray-600 mb-2">000webhost | 04/2011 – 11/2011</p>
+                <p class="text-gray-700">Contributed to the ongoing development of diverse software solutions.</p>
+                <div class="flex flex-wrap gap-4 mt-6">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/zend/zend-original.svg" alt="Zend PHP" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" alt="WordPress" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" alt="jQuery" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" class="w-8 h-8 tech-icon">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" class="w-8 h-8 tech-icon">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <h2 class="text-2xl font-light mb-8" style="color: var(--primary-color);">Projects</h2>
+        <div class="under-construction">
+            <i class="fas fa-hard-hat text-4xl mb-4"></i>
+            <h3 class="text-2xl font-bold mb-2">Work In Progress</h3>
+            <p class="text-lg">Exciting projects are in the works! Check back soon to see what I've been building.</p>
+        </div>
+    </section>
+</div>
+
+<footer class="text-center mt-16 mb-4">
+    <p class="text-gray-600">&copy; 2024 Vytautas Asmantavicius</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        gsap.from(".profile-picture", {
+            opacity: 0,
+            scale: 0.8,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        gsap.from("header h1, header p, .social-links, section", {
+            opacity: 0,
+            y: 20,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        gsap.from(".skill-logo", {
+            opacity: 0,
+            scale: 0.5,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: "#skills",
+                start: "top 80%"
+            }
+        });
+
+        gsap.from(".skill-item", {
+            opacity: 0,
+            x: -50,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: ".skill-bars",
+                start: "top 80%"
+            }
+        });
+
+        gsap.utils.toArray('.skill-progress').forEach(skill => {
+            gsap.to(skill, {
+                width: skill.style.width,
+                duration: 1.5,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: skill,
+                    start: "top 90%"
+                }
+            });
+        });
+
+        gsap.from("#experience", {
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: "#experience",
+                start: "top 80%"
+            }
+        });
+
+        gsap.from(".under-construction", {
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: "#projects",
+                start: "top 80%"
+            }
+        });
+
+
+
+        // New script for sticky navigation
+        const nav = document.querySelector('.sticky-nav');
+        const sticky = nav.offsetTop;
+
+        function stickyNav() {
+            if (window.pageYOffset > sticky) {
+                nav.classList.add("scrolled");
+            } else {
+                nav.classList.remove("scrolled");
+            }
+        }
+
+        window.onscroll = function() {
+            stickyNav();
+        };
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+
+                if (targetId === '#about') {
+                    // Scroll to the very top for the "About" section
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    window.scrollTo({
+                        top: document.querySelector(targetId).offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
