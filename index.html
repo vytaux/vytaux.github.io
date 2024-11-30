@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vytautas Asmantavicius - Full-Stack Software Engineer</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -191,7 +191,7 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container xl:w-3/5">
     <header id="about" class="text-center mb-16 about-section mb-20">
         <img src="https://avatars.githubusercontent.com/u/42167296?v=4" alt="Vytautas Asmantavicius" class="profile-picture shadow-lg">
         <h1 class="text-4xl font-light mb-2" style="color: var(--primary-color);">Vytautas Asmantavicius</h1>
@@ -444,12 +444,11 @@
     </section>
 
     <section id="projects" class="section">
-        <h2 class="text-2xl font-light mb-8" style="color: var(--primary-color);">Projects</h2>
+        <h2 class="text-2xl font-light mb-8" style="color: var(--primary-color);">Projects </h2>
         <div class="mb-8 project-tile bg-white p-6 rounded-lg shadow-md">
-            <h3 class="text-xl mb-2" style="color: var(--secondary-color);">ZYLYTY Web Forum App</h3>
-            <p class="text-gray-700 mb-2">A highly-efficient, dynamic, and secure REST API backend for a web forum application.</p>
-            <p class="text-gray-700 mb-1">Here's the <a href="http://54.174.201.104" target="_blank" class="text-blue-500 underline hover:text-blue-700">Live Demo</a> to explore the application in action.</p>
-            <p class="text-gray-700 mb-4">Check out the <a href="https://github.com/vytaux/zylyty-web-forum-app" target="_blank" class="text-blue-500 underline hover:text-blue-700">project's GitHub</a> for complete endpoints documentation and source code.</p>
+            <h3 class="text-xl mb-2 flex items-center" style="color: var(--secondary-color);">ZYLYTY Web Forum App</h3>
+            <p class="text-gray-700 mb-2 font-semibold">A highly-efficient, dynamic, and secure REST API backend for a web forum application.</p>
+            <p class="text-gray-700 mb-4">Check out the <a href="https://github.com/vytaux/zylyty-web-forum-app" target="_blank" class="font-semibold underline text-sky-600 hover:text-sky-400">project's GitHub</a> for complete endpoints documentation and see the <a href="http://54.174.201.104" target="_blank" class="font-semibold underline text-sky-600 hover:text-sky-400">Live Demo</a>.</p>
             <ul class="space-y-2 mb-4 mt-2">
                 <li class="flex items-start">
                     <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
@@ -464,6 +463,17 @@
                     <span class="text-gray-700">Fully dockerized, enabling rapid deployment and scalability in any environment.</span>
                 </li>
             </ul>
+            <div class="flex flex-wrap gap-4 mt-6">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="w-8 h-8 tech-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring" class="w-8 h-8 tech-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="w-8 h-8 tech-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/maven/maven-original.svg" alt="Maven" class="w-8 h-8 tech-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="w-8 h-8 tech-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="w-8 h-8 tech-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" class="w-8 h-8 tech-icon">
+                <img src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/aws-ec2.svg" alt="AWS EC2" class="w-8 h-8 tech-icon">
+                <img src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/aws-rds.svg" alt="AWS RDS" class="w-8 h-8 tech-icon">
+            </div>
         </div>
     </section>
 </div>
