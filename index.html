@@ -726,12 +726,12 @@
         });
 
 
-
+        // --------------- Sticky nav ---------------------
         const nav = document.querySelector('.sticky-nav');
-        let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
 
         const stickyNav = () => {
-            const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const currentScrollTop = window.scrollY || document.documentElement.scrollTop;
 
             if (currentScrollTop > lastScrollTop) {
                 // Scrolling down
@@ -749,8 +749,13 @@
         window.addEventListener('scroll', stickyNav);
 
         // Initial check in case the page is loaded in the middle
-        stickyNav();
+        if (window.scrollY > 0) {
+            nav.classList.add('scrolled');
+        }
+        // --------------- Sticky nav ---------------------
 
+
+        // Nav clicks
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
